@@ -1,0 +1,22 @@
+This document is intended to cover Docker Engine installation issue. 
+
+
+Scenario 1: Installing Docker CE on CentOS 8.4 Server GUI
+Installing Docker CE on Centos 8.4 should be pretty simple using the script https://get.docker.com/
+However you should consider some pre-requisites to perform a smooth installation of Docker CE 
+
+Version Involved:
+Linux : CentOS Linux release 8.4.2105
+Docker : Docker version 20.10.7, build f0df350
+
+CentOS 8.4 Server GUI version is found to have default containerd packages which would conflict Docker CE installation. Before proceeding with Installation we must remove these conflicts.
+ 
+Packages to be removed : runc, container-selinux
+
+#yum remove runc
+#yum remove container-selinux
+
+Now we can install Docker CE successfully using Docker installation script
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
